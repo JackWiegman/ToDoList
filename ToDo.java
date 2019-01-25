@@ -36,13 +36,14 @@ public class ToDo {
 		priority = val;
 	} 
 
-	public void printToDo() {
+	public void printToDo(int listNum) {
 		if (isCompleted) {
-			System.out.println("\tPriority " + priority + "*COMPLETE*");
-			System.out.println("\t" + description + "\n");
+			System.out.println("\t" + listNum + ": " + description);
+			System.out.println("\tPriority " + priority + " *COMPLETE*");
 		} else {
+			System.out.println("\t" + listNum + ": " + description);
 			System.out.println("\tPriority " + priority);
-			System.out.println("\t" + description + "\n");
+			
 		}
 	}
 

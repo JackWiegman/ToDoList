@@ -25,16 +25,17 @@ public class ToDoList {
 			Scanner scan = new Scanner(System.in);
 			selection = scan.nextInt();
 			
+			Scanner scan2 = new Scanner(System.in);
 
 			if (selection == 1) {
-				Scanner scan2 = new Scanner(System.in);
+				
 				System.out.println("Description: ");
 				String description = scan2.nextLine();
 
 				System.out.println("Priority: ");
 				int priority = scan2.nextInt();
 
-				addToDo(description, priority);
+				addToDo(description.trim(), priority);
 
 				//addToDo("Something", 8);
 			}
@@ -45,12 +46,30 @@ public class ToDoList {
 			}
 
 			if (selection == 3) {
-				
-				setItem();
+				displayList();
+				System.out.println("\nSelect a TODO");
+				int pos = scan2.nextInt() - 1;
+
+				Scanner scan3 = new Scanner(System.in);
+				System.out.println("Set complete or incomplete?");
+				String completeResponse = scan3.nextLine();
+				boolean completeBool;
+
+				System.out.println(completeResponse);
+
+				if (completeResponse.toLowerCase().equals("complete")) {
+					completeBool = true;
+
+				} else {
+					completeBool = false;
+				}
+
+				setItem(pos, completeBool);
+
 			}
 
 			if (selection == 4) {
-				//removeItem();
+				removeItem();
 			}
 
 			System.out.println("\n");
@@ -65,14 +84,22 @@ public class ToDoList {
 
 	public void displayList() {
 		for (int i = 0; i < list.size(); i++) {
-			list.get(i).printToDo();
+			(list.get(i)).printToDo(i + 1);
+			System.out.println("\n");
 		}
 	}
 
 	public void setItem(int index, boolean completeStatus) {
 		if (completeStatus) {
-			
+			(list.get(index)).setComplete();
+			System.out.println("SET TO COMPLETE");
+		} else {
+			(list.get(index)).setIncomplete();
 		}
+	}
+
+	public void removeItem(int index) {
+		
 	}
 
 }
