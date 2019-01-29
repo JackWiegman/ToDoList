@@ -47,29 +47,19 @@ public class ToDoList {
 
 			if (selection == 3) {
 				displayList();
-				System.out.println("\nSelect a TODO");
-				int pos = scan2.nextInt() - 1;
-
-				Scanner scan3 = new Scanner(System.in);
-				System.out.println("Set complete or incomplete?");
-				String completeResponse = scan3.nextLine();
-				boolean completeBool;
-
-				System.out.println(completeResponse);
-
-				if (completeResponse.toLowerCase().equals("complete")) {
-					completeBool = true;
-
-				} else {
-					completeBool = false;
-				}
-
-				setItem(pos, completeBool);
-
+				int pos = selectToDo();
+				setCompleteStatus(pos);
 			}
 
 			if (selection == 4) {
-				removeItem();
+				displayList();
+				int pos = selectToDo();
+				System.out.println("Remove To Do " + (pos+1) + "? (Yes or No)");
+				String str = scan2.nextLine();
+
+				if (str.toLowerCase().equals("yes")) {
+					removeItem(pos);
+				}
 			}
 
 			System.out.println("\n");
@@ -99,7 +89,36 @@ public class ToDoList {
 	}
 
 	public void removeItem(int index) {
-		
+		list.remove(index);
+	}
+
+	public void setCompleteStatus(int pos) {
+		Scanner scan3 = new Scanner(System.in);
+		System.out.println("Set complete or incomplete?");
+		String completeResponse = scan3.nextLine();
+		boolean completeBool;
+
+		System.out.println(completeResponse);
+
+		if (completeResponse.toLowerCase().equals("complete")) {
+			completeBool = true;
+
+		} else {
+			completeBool = false;
+		}
+
+		setItem(pos, completeBool);
+	}
+
+	public int selectToDo() {
+		Scanner scan4 = new Scanner(System.in);
+		System.out.println("\nSelect a TODO");
+		int pos = scan4.nextInt() - 1;
+		return pos;
+	}
+
+	public void selectionSort() {
+
 	}
 
 }
