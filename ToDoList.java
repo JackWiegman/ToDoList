@@ -15,13 +15,14 @@ public class ToDoList {
 	public void giveOptions() {
 		int selection = 0;
 
-		while (selection != 6) {
+		while (selection != 7) {
 			System.out.println("1] Add a new TODO");
 			System.out.println("2] Display the list");
 			System.out.println("3] Set an item to complete or not complete");
 			System.out.println("4] Remove an item from the list");
 			System.out.println("5] Selection Sort list");
-			System.out.println("6] Quit");
+			System.out.println("6] Bubble Sort list");
+			System.out.println("7] Quit");
 
 			Scanner scan = new Scanner(System.in);
 			selection = scan.nextInt();
@@ -65,6 +66,10 @@ public class ToDoList {
 
 			if (selection == 5) {
 				selectionSort();
+			}
+
+			if (selection == 6) {
+				bubbleSort();
 			}
 
 			System.out.println("\n");
@@ -131,6 +136,20 @@ public class ToDoList {
 				if (list.get(index).getPriority() < smallest) {
 					smallest = list.get(index).getPriority();
 					switchSpots(index, front);
+				}
+			}
+		}
+	}
+
+	public void bubbleSort() {
+		boolean done = false;
+
+		while (!done) {
+			done = true;
+			for (int i = 1; i < list.size(); i++) {
+				if (list.get(i).getPriority() < list.get(i-1).getPriority()) {
+					switchSpots(i, i - 1);
+					done = false;
 				}
 			}
 		}
