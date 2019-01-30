@@ -126,11 +126,12 @@ public class ToDoList {
 		int smallest = list.get(0).getPriority();
 
 		for (int front = 0; front < list.size(); front++) {
-			for (int index = 0; index < list.size(); index++) {
+			smallest = list.get(front).getPriority();
+			for (int index = front; index < list.size(); index++) {
 				if (list.get(index).getPriority() < smallest) {
 					smallest = list.get(index).getPriority();
+					switchSpots(index, front);
 				}
-				switchSpots(index, front);
 			}
 		}
 	}
@@ -138,7 +139,9 @@ public class ToDoList {
 	public void switchSpots(int index, int front) {
 		ToDo temp = list.get(front);
 		list.set(front, list.get(index));
-		list.set(index, list.get(front));
+		list.set(index, temp);
+		displayList();
+		System.out.println("Switched " + (index + 1) + "with " + (front + 1));
 	}
 
 }
