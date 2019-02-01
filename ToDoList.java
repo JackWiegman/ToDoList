@@ -90,7 +90,7 @@ public class ToDoList {
 				if (numExists) {
 					System.out.println(num + " is in the list.");
 				} else {
-					System.out.println(num + " is not in the list.")
+					System.out.println(num + " is not in the list.");
 				}
 			}
 
@@ -225,8 +225,8 @@ public class ToDoList {
 		ToDo temp = list.get(front);
 		list.set(front, list.get(index));
 		list.set(index, temp);
-		displayList();
-		System.out.println("Switched " + (index + 1) + "with " + (front + 1));
+		//displayList();
+		//System.out.println("Switched " + (index + 1) + "with " + (front + 1));
 	}
 
 	public boolean exists(int num) {
@@ -236,6 +236,49 @@ public class ToDoList {
 			}
 		}
 		return false;
+	}
+
+	public boolean binarySearch(int num) {
+		// find num in sorted list
+
+		int arrSize = 100;
+
+		/*int[] arr = new int[arrSize];
+
+		for (int i = 0; i < arrSize; i++) {
+			arr[i] = (int)(Math.random() * 100);
+		}
+		for (int i = 0; i < arrSize; i++) {
+			System.out.print(arr[i] + ", ");
+		}*/
+
+		for (int i = 0; i < arrSize; i++) {
+			addToDo("Test " + i, (int)(Math.random() * 100));
+		}
+		for (ToDo item : list) {
+			//System.out.println(item.getPriority());
+		}
+
+		int start = 0;
+		int end = list.size();
+		
+		int count = 0;
+		int splits =  (int)(Math.log(list.size()) / Math.log(2));
+
+		selectionSort();
+
+		while (start < end) {
+			int half = (end - start) / 2; 
+			if (list.get(half).getPriority() == num) {
+				return true;
+			} else if (list.get(half).getPriority() >= num) {
+				end = half;
+			} else {
+				start = half;
+			}
+		}
+		return false;
+
 	}
 
 
